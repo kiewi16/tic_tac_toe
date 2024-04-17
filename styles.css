@@ -1,0 +1,77 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100px;
+    display: flex; 
+}
+
+.rainbow-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    height: 100vh; 
+    width: 20%;
+    font-size: 25px; 
+    border: 1px solid blue
+}
+
+.rainbow-emoji {
+    font-size: 50px; 
+}
+
+.board-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    height: 100vh; 
+    width: 60%;
+    font-size: 30px; 
+    border: 1px solid green; 
+}
+
+.tic-tac-toe-board {
+    display: grid;
+    width: 400px;
+    height: 400px;  
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 0px; 
+    /* text-align: center;  */
+}
+
+.square {
+    border: 2px solid black; 
+    /* padding: 20px; */
+    cursor: pointer;
+    text-align: center;  
+}
+
+/* refacor the HTML below */
+.square:first-child, .square:nth-child(2), .square:nth-child(3) {
+    border-top: none; 
+}
+
+.square:nth-child(3n + 3) {
+    border-right: none; 
+}
+
+.square:first-child, .square:nth-child(4), .square:nth-child(7) {
+    border-left: none;
+}
+
+.square:nth-child(7), .square:nth-child(8), .square:nth-child(9) {
+    border-bottom: none;
+}
+
+.unicorn-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    height: 100vh; 
+    width: 20%;
+    font-size: 25px; 
+    border: 1px solid red; 
+}
+
+.unicorn-emoji {
+    font-size: 50px;
+}
