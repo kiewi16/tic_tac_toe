@@ -26,6 +26,7 @@ body {
     width: 60%;
     font-size: 30px; 
     border: 1px solid green; 
+    cursor: not-allowed; 
 }
 
 .tic-tac-toe-board {
