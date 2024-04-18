@@ -1,6 +1,7 @@
 // global variables
 var player1 = {}
 var player2 = {}
+var squareStatus = ["", "", "", "", "", "", "", "", ""]
 var winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -15,9 +16,6 @@ var winConditions = [
 // query selectors 
 
 var board = document.querySelectorAll('.tic-tac-toe-board')
-
-// the squareStatus is part of data model that needs to be updated as the game is played. 
-var squareStatus = ["", "", "", "", "", "", "", "", ""]
 
 // event listeners
 
@@ -60,9 +58,9 @@ function createPlayers () {
 function checkSquareStatus(event) {
     if (event.target.classList.contains('square')) {
         var selectedSquare = event.target.closest('div')
-        console.log("selectedSquare:", selectedSquare)
+        // console.log("selectedSquare:", selectedSquare)
         var selectedSquareIndex = +(selectedSquare.getAttribute("cellIndex"))
-        console.log("selectedSquareIndex:", selectedSquareIndex)
+        // console.log("selectedSquareIndex:", selectedSquareIndex)
       } 
     if (squareStatus[selectedSquareIndex] === "") {
       squareStatus[selectedSquareIndex] = player1.token
@@ -70,9 +68,9 @@ function checkSquareStatus(event) {
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-    switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
     checkWinConditionsPlayer1(player1)
     checkWinConditionsPlayer2(player2)
+    switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
 
 }
 
@@ -132,7 +130,12 @@ function checkForDraw() {
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
 
+function increaseWins () {
+    
+}
+
 // A function that resets the game board’s data to begin a new game
+
 function resetGame() {
   
 }
