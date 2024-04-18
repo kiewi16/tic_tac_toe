@@ -84,7 +84,10 @@ function updateBoard (selectedSquare, selectedSquareIndex) {
     checkWinConditions(player1)
     checkWinConditions(player2)
     checkForDraw(player1, player2)
-    if (shouldSwitchTurn) {switchPlayersTurn(player1, player2)}
+    if (shouldSwitchTurn) {
+        switchPlayersTurn(player1, player2)
+        updateHeader(player1.isTurn ? player1.token : player2.token)
+    }
 }
 
 function makeMove (selectedSquareIndex) {
@@ -104,12 +107,11 @@ function switchPlayersTurn(player1, player2) {
   if (player1.isTurn === true) {
     player1.isTurn = false
     player2.isTurn = true
-    // player1.moves.push(selectedSquareIndex)
+   
   } else {
     player2.isTurn = false 
     player1.isTurn = true 
-    // player2.moves.push(selectedSquareIndex)
-}
+  }
     console.log("players:", player1, player2)
 }
 
@@ -168,7 +170,7 @@ function updateBoardToken (currentPlayerToken, selectedSquare) {
 }
 
 function updateHeader (currentPlayerToken) {
-    mainHeader.innerHTML= `<h2> It's ${currentPlayerToken} Turn </h2>`
+    mainHeader.innerText= `It's ${currentPlayerToken}'s Turn`
 }
 
 function updatePlayerWins ()  {
