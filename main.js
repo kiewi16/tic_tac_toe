@@ -143,7 +143,9 @@ function checkForDraw(player1, player2) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
     if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
-        console.log("This Game is a Draw")}
+        updateHeaderWithDraw()
+        console.log("This Game is a Draw")
+    }
     // invoke resetGame function 
 }
 
@@ -164,7 +166,12 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
 // A function that resets the game board’s data to begin a new game
 
 function resetGame() {
-    //clear inner HTML
+    squareStatus = ["", "", "", "", "", "", "", "", ""]
+    player1 = createPlayers("🌈")
+    player2 = createPlayers("🦄")
+    for (var i = 0; i < boardSquares.length; i++) {
+        boardSquares[i].innerText = ""
+    }
 }
 
 // functions that update the DOM 
@@ -174,6 +181,14 @@ function updateBoardToken (currentPlayerToken, selectedSquare) {
 
 function updateHeader(currentPlayerToken) {
     mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`
+}
+
+// function updateHeaderWithWinner() {
+//     mainHeader.innerText = 
+// }
+
+function updateHeaderWithDraw() {
+    mainHeader.innerText = `This Game is a Draw`
 }
 
 function updatePlayerWins(player) {
