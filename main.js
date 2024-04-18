@@ -68,9 +68,12 @@ function checkSquareStatus(event) {
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-    checkWinConditionsPlayer1(player1)
-    checkWinConditionsPlayer2(player2)
     switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
+    // checkWinConditionsPlayer2(player2). 
+    // I think the switchPlayersTurn function needs to go before checkWinConditions because in the function it is pushing the moves up to the player object. 
+    // checkWinConditions cannot evaluate a move unless it has been pushed to the appropriate player object. 
+    checkWinConditions(player1)
+    checkWinConditions(player2)
 }
 
 // A function that keeps track of which player’s turn it currently is
@@ -90,45 +93,65 @@ function switchPlayersTurn(selectedSquareIndex) {
 }
 
 // A function that checks the game board data for win conditions
+// This function iterates over the winConditions array and checks if any of the win conditions are met by comparing them against the moves made by each player. If win condition (i.e., all three squares are included in the player1.moves), the function currently logs a message to the console indicating which player wins. 
 
-function checkWinConditionsPlayer1(player1) {
-   for (var i = 0; i < winConditions.length; i++) {
-    var player1SquaresTowardsWinCounter = 0;
-    for (var j = 0; j < player1.moves.length; j++) {
-        if (winConditions[i].includes(player1.moves[j])) {
-            player1SquaresTowardsWinCounter ++
-            console.log(player1SquaresTowardsWinCounter)
-        } 
-    }
-    if (player1SquaresTowardsWinCounter === 3) {
-        player1.wins += 1
-    }
-}
-}
+// function checkWinConditionsPlayer1(player1) {
+//     for (var i = 0; i < winConditions.length; i++) {
+//         var player1SquaresTowardsWinCounter = 0;
+//         for (var j = 0; j < player1.moves.length; j++) {
+//             if (winConditions[i].includes(player1.moves[j])) {
+//                 player1SquaresTowardsWinCounter ++
+//             } 
+//         }
+//         if (player1SquaresTowardsWinCounter === 3) {
+//             // player1.wins += 1
+//             console.log("Player 1 Wins!")
+//             return
+//         }
+//     }
+// }
 
-function checkWinConditionsPlayer2(player2) {
+// function checkWinConditionsPlayer2(player2) {
+//     for (var i = 0; i < winConditions.length; i++) {
+//         var player2SquaresTowardsWinCounter = 0;
+//      for (var j = 0; j < player2.moves.length; j++) {
+//          if (winConditions[i].includes(player2.moves[j])) {
+//              player2SquaresTowardsWinCounter ++
+//              console.log( {player2SquaresTowardsWinCounter} )
+//          } 
+//      }
+//      if (player2SquaresTowardsWinCounter === 3) {
+//         // player2.wins += 1
+//         console.log("Player 2 Wins!")
+//         return 
+//      }
+//  }
+//  }
+
+function checkWinConditions(player) {
     for (var i = 0; i < winConditions.length; i++) {
-     var player2SquaresTowardsWinCounter = 0;
-     for (var j = 0; j < player2.moves.length; j++) {
-         if (winConditions[i].includes(player2.moves[j])) {
-             player2SquaresTowardsWinCounter ++
-             console.log(player2SquaresTowardsWinCounter)
-         } 
-     }
-     if (player2SquaresTowardsWinCounter === 3) {
-        player2.wins += 1
-     }
- }
- }
+        var playerSquaresTowardsWinCounter = 0;
+        for (var j = 0; j < player.moves.length; j++) {
+            if (winConditions[i].includes(player.moves[j])) {
+                playerSquaresTowardsWinCounter ++
+            } 
+        }
+        if (playerSquaresTowardsWinCounter === 3) {
+            console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!") // The player.id === 1 evaluates to true if the id property of the player object is 1, and false otherwise. "Player 1 Wins!" is the string that will be logged to the console if the condition is true and "Player 2 Wins!" is the value that will be used if the condition is false. 
+            return
+        }
+    }
+}
 
 // A function that detects when a game is a draw (no one has won)
 
-function checkForDraw(player1, player2, totalBoardSquares) {
-    var totalPlayerMoves = player1.moves.length + player2.moves.length 
-    if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
-        console.log("This Game is a Draw")
-    } else {console.log("This Game is not a Draw")}
-}
+// function checkForDraw(player1, player2) {
+//     var totalBoardSquares = 9
+//     var totalPlayerMoves = player1.moves.length + player2.moves.length 
+//     if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
+//         console.log("This Game is a Draw")
+//     } else {console.log("This Game is not a Draw")}
+// }
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
 
