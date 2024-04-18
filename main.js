@@ -116,6 +116,7 @@ function checkWinConditions(player) {
         }
         if (playerSquaresTowardsWinCounter === 3) {
             console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!") // The player.id === 1 evaluates to true if the id property of the player object is 1, and false otherwise. "Player 1 Wins!" is the string that will be logged to the console if the condition is true and "Player 2 Wins!" is the value that will be used if the condition is false. 
+            increaseWins(playerSquaresTowardsWinCounter, player)
             return
         }
     }
@@ -133,8 +134,14 @@ function checkForDraw(player1, player2) {
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
 
-function increaseWins () {
-    
+function increaseWins (playerSquaresTowardsWinCounter, player) {
+    if (playerSquaresTowardsWinCounter === 3 && player.id === 1) {
+        player1.wins += 1
+        console.log("player1.wins:", player1.wins)
+    } else if (playerSquaresTowardsWinCounter === 3 && player.id === 2) {
+        player2.wins += 1
+        console.log("player2.wins:", player2.wins)
+    }
 }
 
 // A function that resets the game board’s data to begin a new game
