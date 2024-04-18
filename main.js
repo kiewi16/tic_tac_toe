@@ -68,26 +68,35 @@ function checkSquareStatus(event) {
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-    switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
+   
+    makeMove(selectedSquareIndex)
+    checkWinConditions(player1)
+    checkWinConditions(player2)
+    checkForDraw(player1, player2)
+    switchPlayersTurn(player1, player2) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
     // checkWinConditionsPlayer2(player2). 
     // I think the switchPlayersTurn function needs to go before checkWinConditions because in the function it is pushing the moves up to the player object. 
     // checkWinConditions cannot evaluate a move unless it has been pushed to the appropriate player object. 
-    checkWinConditions(player1)
-    checkWinConditions(player2)
+}
+
+function makeMove (selectedSquareIndex) {
+    if (player1.isTurn === true) {
+    player1.moves.push(selectedSquareIndex)
+    } else {player2.moves.push(selectedSquareIndex)}
 }
 
 // A function that keeps track of which player’s turn it currently is
 // selectedSquareIndex is the parameter
 
-function switchPlayersTurn(selectedSquareIndex) {
+function switchPlayersTurn(player1, player2) {
   if (player1.isTurn === true) {
     player1.isTurn = false
     player2.isTurn = true
-    player1.moves.push(selectedSquareIndex)
+    // player1.moves.push(selectedSquareIndex)
   } else {
     player2.isTurn = false 
     player1.isTurn = true 
-    player2.moves.push(selectedSquareIndex)
+    // player2.moves.push(selectedSquareIndex)
 }
     console.log("players:", player1, player2)
 }
@@ -112,13 +121,15 @@ function checkWinConditions(player) {
 
 // A function that detects when a game is a draw (no one has won)
 
-// function checkForDraw(player1, player2) {
-//     var totalBoardSquares = 9
-//     var totalPlayerMoves = player1.moves.length + player2.moves.length 
-//     if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
-//         console.log("This Game is a Draw")
-//     } else {console.log("This Game is not a Draw")}
-// }
+function checkForDraw(player1, player2) {
+    var totalBoardSquares = 9
+    var totalPlayerMoves = player1.moves.length + player2.moves.length 
+
+    if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
+        console.log("This Game is a Draw")}
+    else {console.log("This Game is not a Draw")}
+}
+
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
 
