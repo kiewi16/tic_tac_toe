@@ -18,6 +18,7 @@ var winConditions = [
 var board = document.querySelectorAll('.tic-tac-toe-board')
 var boardSquares = document.querySelector('.square')
 var mainHeader = document.querySelector('h2')
+var playerWins = document.querySelector('h3')
 
 // event listeners
 
@@ -128,7 +129,7 @@ function checkWinConditions(player) {
             } 
         }
         if (playerSquaresTowardsWinCounter === 3) {
-            console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!") // The player.id === 1 evaluates to true if the id property of the player object is 1, and false otherwise. "Player 1 Wins!" is the string that will be logged to the console if the condition is true and "Player 2 Wins!" is the value that will be used if the condition is false. 
+            console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
             increaseWins(playerSquaresTowardsWinCounter, player)
             // invoke resetGame function 
             return
@@ -152,9 +153,11 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
     if (playerSquaresTowardsWinCounter === 3 && player.id === 1) {
         player1.wins += 1
         console.log("player1.wins:", player1.wins)
+        updatePlayerWins(player) 
     } else if (playerSquaresTowardsWinCounter === 3 && player.id === 2) {
         player2.wins += 1
         console.log("player2.wins:", player2.wins)
+        updatePlayerWins(player) 
     }
 }
 
@@ -164,16 +167,16 @@ function resetGame() {
     //clear inner HTML
 }
 
-// DOM UPDATES Functions that target the HTML 
+// functions that update the DOM 
 function updateBoardToken (currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = currentPlayerToken
 }
 
-function updateHeader (currentPlayerToken) {
-    mainHeader.innerText= `It's ${currentPlayerToken}'s Turn`
+function updateHeader(currentPlayerToken) {
+    mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`
 }
 
-function updatePlayerWins ()  {
-
+function updatePlayerWins(player) {
+    playerWins.innerText = `${player.wins} wins`
 }
 
