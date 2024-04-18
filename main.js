@@ -22,7 +22,7 @@ var boardSquares = document.querySelector('.square')
 // event listeners
 
 // added eventListener to the <section> element, which is the parent element that contains the board squares. 
-board = addEventListener ('click', checkSquareStatusAndUpdateSquareStatus)
+board = addEventListener ('click', checkSquareStatus)
 window.addEventListener('load', createPlayers)
 
 // functions
@@ -62,13 +62,17 @@ if (token === "🌈") {
 
 // A function that keeps track of the data for the game board
 
-function checkSquareStatusAndUpdateSquareStatus(event) {
-        var selectedSquare = event.target.closest('div')
+function checkSquareStatus(event) {
+    var selectedSquare = event.target.closest('div')
         // console.log( {selectedSquare} )
-        var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex"))
+     var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex"))
         // console.log( {selectedSquareIndex} )
-        var shouldSwitchTurn = false 
-        var shouldMakeMove = false 
+    updateBoard (selectedSquare, selectedSquareIndex)
+}
+    
+function updateBoard (selectedSquare, selectedSquareIndex) {
+    var shouldSwitchTurn = false
+    var shouldMakeMove = false 
     if (squareStatus[selectedSquareIndex] === "") {
       squareStatus[selectedSquareIndex] = player1.isTurn ? player1.token : player2.token
       shouldSwitchTurn = true
@@ -78,7 +82,6 @@ function checkSquareStatusAndUpdateSquareStatus(event) {
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-    
     if (shouldMakeMove) {makeMove(selectedSquareIndex)}
     checkWinConditions(player1)
     checkWinConditions(player2)
@@ -163,9 +166,13 @@ function resetGame() {
  
 }
 
-// DOM UPDATES Functions that targets the HTML 
+// DOM UPDATES Functions that target the HTML 
 
 function updateBoardToken (currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = currentPlayerToken
+}
+
+function updateHeader () {
+
 }
 
