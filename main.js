@@ -23,7 +23,7 @@ var squareStatus = ["", "", "", "", "", "", "", "", ""]
 
 // added eventListener to the <section> element, which is the parent element that contains the board squares. 
 board = addEventListener ('click', checkSquareStatus)
-window.addEventListener("load", createPlayers)
+window.addEventListener('load', createPlayers)
 
 // functions
 
@@ -70,13 +70,13 @@ function checkSquareStatus(event) {
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-    // checkWinConditions()
     switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
+    checkWinConditions(player1)
 
 }
 
 // A function that keeps track of which player’s turn it currently is
-// sqaureStatus is the parameter
+// selectedSquareIndex is the parameter
 
 function switchPlayersTurn(selectedSquareIndex) {
   if (player1.isTurn === true) {
@@ -93,19 +93,21 @@ function switchPlayersTurn(selectedSquareIndex) {
 
 // A function that checks the game board data for win conditions
 
-function checkWinConditions() {
+function checkWinConditions(player1) {
    for (var i = 0; i < winConditions.length; i++) {
-    var tokensPlaced = 0
-    for (var j = 0; j < winConditions[i].length; j++) {
-        if(player1.moves.indexOf(winConditions[i][j]!== -1) {
-            // UPDATE TOKENS PLACED 
-        }
+    var player1SquaresTowardsWinCounter = 0;
+    for (var j = 0; j < player1.moves.length; j++) {
+        if (winConditions[i].includes(player1.moves[j])) {
+            player1SquaresTowardsWinCounter ++
+            console.log(player1SquaresTowardsWinCounter)
+        } 
     }
- 
+    if (player1SquaresTowardsWinCounter === 3) {
+        player1.wins += 1
+    }
 }
 }
 
-// if the index does exist inside that array, update the win counter. 
 // A function that detects when a game is a draw (no one has won)
 
 function checkForDraw() {
