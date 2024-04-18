@@ -147,5 +147,7 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
 // A function that resets the game board’s data to begin a new game
 
 function resetGame() {
-  
+    //clear inner HTML
+    //reset player objects
+ 
 }
