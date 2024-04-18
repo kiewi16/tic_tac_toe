@@ -1,6 +1,6 @@
 // global variables
-var player1 = {}
-var player2 = {}
+var player1 = createPlayers("🌈")
+var player2 = createPlayers("🦄")
 var squareStatus = ["", "", "", "", "", "", "", "", ""]
 var winConditions = [
     [0, 1, 2],
@@ -29,21 +29,26 @@ window.addEventListener('load', createPlayers)
 
 // A function that creates the objects that store each players’ information - properties should include: id (ex: 'one'), token (ex: '⭐️'), wins (ex: 0)
 
-function createPlayers () {
-  player1 = {
-    id: 1,
-    token: "🌈", 
-    isTurn: true,
-    wins: 0, 
-    moves: []
-}; 
-  player2 = {
-    id: 2,
-    token: "🦄",
-    isTurn: false,
-    wins: 0, 
-    moves: []
-  }
+// add parameter which is the name of the player, basd on the name of the player that I am passing as an argument to my function invocation, I will return the player object. 
+
+function createPlayers (token) {
+if (token === "🌈") { 
+    return {
+        id: 1,
+        token: token, 
+        isTurn: true,
+        wins: 0, 
+        moves: []
+} 
+} else {
+    return {
+        id: 2,
+        token: token, 
+        isTurn: true,
+        wins: 0, 
+        moves: []
+    }
+}
 }
 
 // the first if statement gets the value of the clicked div's(square) cellIndex attribute (0 to 8).
@@ -60,7 +65,7 @@ function createPlayers () {
 function checkSquareStatusAndUpdateSquareStatus(event) {
         var selectedSquare = event.target.closest('div')
         // console.log( {selectedSquare} )
-        var selectedSquareIndex = +(selectedSquare.getAttribute("cellIndex"))
+        var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex"))
         // console.log( {selectedSquareIndex} )
         var shouldSwitchTurn = false 
         var shouldMakeMove = false 
