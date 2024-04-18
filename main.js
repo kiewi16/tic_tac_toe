@@ -16,11 +16,13 @@ var winConditions = [
 // query selectors 
 
 var board = document.querySelectorAll('.tic-tac-toe-board')
+var boardSquares = document.querySelector('.square')
+
 
 // event listeners
 
 // added eventListener to the <section> element, which is the parent element that contains the board squares. 
-board = addEventListener ('click', checkSquareStatus)
+board = addEventListener ('click', checkSquareStatusAndUpdateSquareStatus)
 window.addEventListener('load', createPlayers)
 
 // functions
@@ -51,37 +53,40 @@ function createPlayers () {
 // squareStatus is the array that represents the status of each square in the board.
 // selectedSquareIndex holds the index value of the square that was clicked on.
 // squareStatus[selectedSquareIndex] accesses the element in the squareStatus array at the position specified by the selectedSquareIndex. For example, if selectedSquareIndex is 0, then it would access the first element in the squareStatus array.
-// the second if statement checks to see if the element in the squareStatus array selected by squareStatus[selectedSquareIndex] is empty (""). If it is empty (""), then the data model will be updated with an emoji based on which player's turn it is. 
+// the if statement checks to see if the element in the squareStatus array selected by squareStatus[selectedSquareIndex] is empty (""). If it is empty (""), then the data model will be updated with an emoji based on which player's turn it is. 
 
 // A function that keeps track of the data for the game board
 
-function checkSquareStatus(event) {
-    if (event.target.classList.contains('square')) {
+function checkSquareStatusAndUpdateSquareStatus(event) {
         var selectedSquare = event.target.closest('div')
-        // console.log("selectedSquare:", selectedSquare)
+        // console.log( {selectedSquare} )
         var selectedSquareIndex = +(selectedSquare.getAttribute("cellIndex"))
-        // console.log("selectedSquareIndex:", selectedSquareIndex)
-      } 
+        // console.log( {selectedSquareIndex} )
+        var shouldSwitchTurn = false 
+        var shouldMakeMove = false 
     if (squareStatus[selectedSquareIndex] === "") {
-      squareStatus[selectedSquareIndex] = player1.token
-     
+      squareStatus[selectedSquareIndex] = player1.isTurn ? player1.token : player2.token
+      shouldSwitchTurn = true
+      shouldMakeMove = true 
+      var currentPlayerToken = squareStatus[selectedSquareIndex]
+      updateBoardToken (currentPlayerToken, selectedSquare)
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-   
-    makeMove(selectedSquareIndex)
+    
+    if (shouldMakeMove) {makeMove(selectedSquareIndex)}
     checkWinConditions(player1)
     checkWinConditions(player2)
     checkForDraw(player1, player2)
-    switchPlayersTurn(player1, player2) 
+    if (shouldSwitchTurn) {switchPlayersTurn(player1, player2)}
 }
 
 function makeMove (selectedSquareIndex) {
     if (player1.isTurn === true) {
-    player1.moves.push(selectedSquareIndex)
-    console.log("player1.moves:", player1.moves)
+      player1.moves.push(selectedSquareIndex)
+      console.log("player1.moves:", player1.moves)
     } else {player2.moves.push(selectedSquareIndex)
-        console.log("player2.moves:", player2.moves)
+      console.log("player2.moves:", player2.moves)
     }
 }
 
@@ -117,6 +122,7 @@ function checkWinConditions(player) {
         if (playerSquaresTowardsWinCounter === 3) {
             console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!") // The player.id === 1 evaluates to true if the id property of the player object is 1, and false otherwise. "Player 1 Wins!" is the string that will be logged to the console if the condition is true and "Player 2 Wins!" is the value that will be used if the condition is false. 
             increaseWins(playerSquaresTowardsWinCounter, player)
+            // invoke resetGame function 
             return
         }
     }
@@ -129,7 +135,7 @@ function checkForDraw(player1, player2) {
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
     if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
         console.log("This Game is a Draw")}
-    // else {console.log("This Game is not a Draw")} 
+    // invoke resetGame function 
 }
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
@@ -148,6 +154,13 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
 
 function resetGame() {
     //clear inner HTML
-    //reset player objects
+
  
 }
+
+// DOM UPDATES Functions that targets the HTML 
+
+function updateBoardToken (currentPlayerToken, selectedSquare) {
+    selectedSquare.innerText = currentPlayerToken
+}
+
