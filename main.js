@@ -71,7 +71,8 @@ function checkSquareStatus(event) {
       window.alert('Please Select Another Square!')
     }
     switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
-    checkWinConditions(player1)
+    checkWinConditionsPlayer1(player1)
+    checkWinConditionsPlayer2(player2)
 
 }
 
@@ -93,7 +94,7 @@ function switchPlayersTurn(selectedSquareIndex) {
 
 // A function that checks the game board data for win conditions
 
-function checkWinConditions(player1) {
+function checkWinConditionsPlayer1(player1) {
    for (var i = 0; i < winConditions.length; i++) {
     var player1SquaresTowardsWinCounter = 0;
     for (var j = 0; j < player1.moves.length; j++) {
@@ -107,6 +108,21 @@ function checkWinConditions(player1) {
     }
 }
 }
+
+function checkWinConditionsPlayer2(player2) {
+    for (var i = 0; i < winConditions.length; i++) {
+     var player2SquaresTowardsWinCounter = 0;
+     for (var j = 0; j < player2.moves.length; j++) {
+         if (winConditions[i].includes(player2.moves[j])) {
+             player2SquaresTowardsWinCounter ++
+             console.log(player2SquaresTowardsWinCounter)
+         } 
+     }
+     if (player2SquaresTowardsWinCounter === 3) {
+        player2.wins += 1
+     }
+ }
+ }
 
 // A function that detects when a game is a draw (no one has won)
 
