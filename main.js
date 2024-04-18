@@ -95,39 +95,6 @@ function switchPlayersTurn(selectedSquareIndex) {
 // A function that checks the game board data for win conditions
 // This function iterates over the winConditions array and checks if any of the win conditions are met by comparing them against the moves made by each player. If win condition (i.e., all three squares are included in the player1.moves), the function currently logs a message to the console indicating which player wins. 
 
-// function checkWinConditionsPlayer1(player1) {
-//     for (var i = 0; i < winConditions.length; i++) {
-//         var player1SquaresTowardsWinCounter = 0;
-//         for (var j = 0; j < player1.moves.length; j++) {
-//             if (winConditions[i].includes(player1.moves[j])) {
-//                 player1SquaresTowardsWinCounter ++
-//             } 
-//         }
-//         if (player1SquaresTowardsWinCounter === 3) {
-//             // player1.wins += 1
-//             console.log("Player 1 Wins!")
-//             return
-//         }
-//     }
-// }
-
-// function checkWinConditionsPlayer2(player2) {
-//     for (var i = 0; i < winConditions.length; i++) {
-//         var player2SquaresTowardsWinCounter = 0;
-//      for (var j = 0; j < player2.moves.length; j++) {
-//          if (winConditions[i].includes(player2.moves[j])) {
-//              player2SquaresTowardsWinCounter ++
-//              console.log( {player2SquaresTowardsWinCounter} )
-//          } 
-//      }
-//      if (player2SquaresTowardsWinCounter === 3) {
-//         // player2.wins += 1
-//         console.log("Player 2 Wins!")
-//         return 
-//      }
-//  }
-//  }
-
 function checkWinConditions(player) {
     for (var i = 0; i < winConditions.length; i++) {
         var playerSquaresTowardsWinCounter = 0;
