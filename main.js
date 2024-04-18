@@ -71,7 +71,6 @@ function checkSquareStatus(event) {
     checkWinConditionsPlayer1(player1)
     checkWinConditionsPlayer2(player2)
     switchPlayersTurn(selectedSquareIndex) // selected SquareIndex is the ARGUMENT THAT IS BEING PASSED WHEN THE FUNCTION IS INVOKED. 
-
 }
 
 // A function that keeps track of which player’s turn it currently is
@@ -124,8 +123,11 @@ function checkWinConditionsPlayer2(player2) {
 
 // A function that detects when a game is a draw (no one has won)
 
-function checkForDraw() {
-  
+function checkForDraw(player1, player2, totalBoardSquares) {
+    var totalPlayerMoves = player1.moves.length + player2.moves.length 
+    if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
+        console.log("This Game is a Draw")
+    } else {console.log("This Game is not a Draw")}
 }
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
