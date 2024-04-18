@@ -17,7 +17,7 @@ var winConditions = [
 
 var board = document.querySelectorAll('.tic-tac-toe-board')
 var boardSquares = document.querySelector('.square')
-
+var mainHeader = document.querySelector('h2')
 
 // event listeners
 
@@ -64,9 +64,7 @@ if (token === "🌈") {
 
 function checkSquareStatus(event) {
     var selectedSquare = event.target.closest('div')
-        // console.log( {selectedSquare} )
-     var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex"))
-        // console.log( {selectedSquareIndex} )
+    var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex")) 
     updateBoard (selectedSquare, selectedSquareIndex)
 }
     
@@ -162,17 +160,18 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
 
 function resetGame() {
     //clear inner HTML
-
- 
 }
 
 // DOM UPDATES Functions that target the HTML 
-
 function updateBoardToken (currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = currentPlayerToken
 }
 
-function updateHeader () {
+function updateHeader (currentPlayerToken) {
+    mainHeader.innerHTML= `<h2> It's ${currentPlayerToken} Turn </h2>`
+}
+
+function updatePlayerWins ()  {
 
 }
 
