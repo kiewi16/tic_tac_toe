@@ -27,7 +27,6 @@ window.addEventListener('load', createPlayers)
 
 // functions
 // A function that creates the objects that store each players’ information - properties should include: id (ex: 'one'), token (ex: '⭐️'), wins (ex: 0)
-
 function createPlayers (token) {
 if (token === "🌈") { 
     return {
