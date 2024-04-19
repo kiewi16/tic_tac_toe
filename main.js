@@ -180,7 +180,6 @@ function updateHeader(currentPlayerToken) {
     mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`
 }
 
-
 function updatePlayerWins(player) {
     var playerWins
     if (player.id === 1) { 
@@ -197,11 +196,6 @@ function updateHeaderWithWinner(player) {
         mainHeader.innerText = `${player.token} Won!`;
     }, 0)
 }
-
-// function updateHeaderWithDraw() {
-//     mainHeader.innerText = `This Game is a Draw!`
-//     console.log("linke 207:", mainHeader.innerText)
-// }
 
 function updateHeaderWithDraw() {
     mainHeader.innerText = `This Game is a Draw!`;
