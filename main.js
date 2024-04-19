@@ -23,8 +23,6 @@ var unicornWins = document.querySelector('.unicorn-wins')
 
 // event listeners
 
-// added eventListener to the <section> element, which is the parent element that contains the board squares. 
-// boardSquares = addEventListener ('click', checkSquareStatus)
 for (var i = 0; i < boardSquares.length; i++) {
     boardSquares[i].addEventListener('click', checkSquareStatus)
 }
@@ -50,21 +48,12 @@ if (token === "🌈") {
     return {
         id: 2,
         token: token, 
-        isTurn: true,
+        isTurn: false,
         wins: 0, 
         moves: []
     }
 }
 }
-
-// the first if statement gets the value of the clicked div's(square) cellIndex attribute (0 to 8).
-// the value of the attribute (0 to 8) is stored to the selectedSquareIndex variable. 
-// the value stored to the selectedSquare Index variable is not an integer because the value is not being converted to an integer. In JavaScript, when you retrieve values from HTML attributes using methods like getAttribute, the values are returned as strings. This is because HTML attributes are inherently string-based. Adding the "+" before the (selectedSquare.getAttribute("cellIndex")) converts the value to an integer. 
-
-// squareStatus is the array that represents the status of each square in the board.
-// selectedSquareIndex holds the index value of the square that was clicked on.
-// squareStatus[selectedSquareIndex] accesses the element in the squareStatus array at the position specified by the selectedSquareIndex. For example, if selectedSquareIndex is 0, then it would access the first element in the squareStatus array.
-// the if statement checks to see if the element in the squareStatus array selected by squareStatus[selectedSquareIndex] is empty (""). If it is empty (""), then the data model will be updated with an emoji based on which player's turn it is. 
 
 // A function that keeps track of the data for the game board
 
@@ -88,14 +77,14 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
     }
 
     if (shouldMakeMove) {
-    updatePlayerMoves(selectedSquareIndex)}
+      updatePlayerMoves(selectedSquareIndex)}
+    
     var player = player1.isTurn ? player1 : player2
     checkWinConditions(player)
     checkForDraw(player1, player2)
-   
+    
     if (shouldSwitchTurn) {
-        switchPlayersTurn(player1, player2)
-        updateHeader(player1.isTurn ? player1.token : player2.token)
+      switchPlayersTurn(player1, player2)
     }
 }
 
@@ -120,7 +109,8 @@ function switchPlayersTurn(player1, player2) {
     player2.isTurn = false 
     player1.isTurn = true 
   }
-    console.log("players:", player1, player2)
+  updateHeader(player1.isTurn ? player1.token : player2.token)
+  console.log("players:", player1, player2)
 }
 
 // A function that checks the game board data for win conditions
@@ -138,8 +128,8 @@ function checkWinConditions(player) {
         if (playerSquaresTowardsWinCounter === 3) {
             console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
             increaseWins(playerSquaresTowardsWinCounter, player)
-            // updateHeaderWithWinner(player)
-            setTimeout(resetGame, 5000)
+            updateHeaderWithWinner(player)
+            setTimeout(resetGame, 3000)
             return
         }
     }
@@ -154,8 +144,8 @@ function checkForDraw(player1, player2, playerSquaresTowardsWinCounter) {
     if (totalPlayerMoves === totalBoardSquares && playerSquaresTowardsWinCounter !== 3){
         console.log("This Game is a Draw")
         updateHeaderWithDraw()
-        setTimeout(resetGame, 5000)
-        return; 
+        setTimeout(resetGame, 3000)
+        return true; 
     } else {console.log("this game is not a draw")}
 }
 // disableCell and remove the click event (wherever it is on event listener)
@@ -186,19 +176,12 @@ function resetGame() {
     for (var i = 0; i < boardSquares.length; i++) {
         boardSquares[i].innerText = ""
     }
+    mainHeader.innerText = `It's 🌈's Turn`
 }
 
 // functions that update the DOM 
 function updateBoardToken (currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = currentPlayerToken
-}
-// function updateHeaderWithWinner(player) {
-//     console.log("line 195:", player)
-//     mainHeader.innerText = `${player.token} Won`
-// }
-
-function updateHeaderWithDraw() {
-    mainHeader.innerText = `This Game is a Draw!`
 }
 
 function updateHeader(currentPlayerToken) {
@@ -213,4 +196,14 @@ function updatePlayerWins(player) {
         playerWins = unicornWins
     }
     playerWins.innerText = `${player.wins} wins`
+}
+
+function updateHeaderWithWinner(player) {
+    mainHeader.innerText = `${player.token} Won`
+    console.log("line 202:", mainHeader.innerText)
+}
+
+function updateHeaderWithDraw() {
+    mainHeader.innerText = `This Game is a Draw!`
+    console.log("linke 207:", mainHeader.innerText)
 }
