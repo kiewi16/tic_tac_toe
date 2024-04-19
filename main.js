@@ -87,7 +87,8 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
       window.alert('Please Select Another Square!')
     }
 
-    if (shouldMakeMove) {updatePlayerMoves(selectedSquareIndex)}
+    if (shouldMakeMove) {
+    updatePlayerMoves(selectedSquareIndex)}
     var player = player1.isTurn ? player1 : player2
     checkWinConditions(player)
     checkForDraw(player1, player2)
@@ -115,7 +116,6 @@ function switchPlayersTurn(player1, player2) {
   if (player1.isTurn === true) {
     player1.isTurn = false
     player2.isTurn = true
-   
   } else {
     player2.isTurn = false 
     player1.isTurn = true 
@@ -143,19 +143,20 @@ function checkWinConditions(player) {
             return
         }
     }
+    return playerSquaresTowardsWinCounter
 }
 
 // A function that detects when a game is a draw (no one has won)
 
-function checkForDraw(player1, player2) {
+function checkForDraw(player1, player2, playerSquaresTowardsWinCounter) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
-    if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0){
+    if (totalPlayerMoves === totalBoardSquares && playerSquaresTowardsWinCounter !== 3){
         console.log("This Game is a Draw")
         updateHeaderWithDraw()
         setTimeout(resetGame, 5000)
         return; 
-    }
+    } else {console.log("this game is not a draw")}
 }
 // disableCell and remove the click event (wherever it is on event listener)
 
