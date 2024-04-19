@@ -71,33 +71,34 @@ if (token === "🌈") {
 function checkSquareStatus(event) {
     var selectedSquare = event.target.closest('div')
     var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex")) 
-    updateBoard (selectedSquare, selectedSquareIndex)
+    updateSquare (selectedSquare, selectedSquareIndex)
 }
     
-function updateBoard (selectedSquare, selectedSquareIndex) {
+function updateSquare (selectedSquare, selectedSquareIndex) {
     var shouldSwitchTurn = false
     var shouldMakeMove = false 
     if (squareStatus[selectedSquareIndex] === "") {
       squareStatus[selectedSquareIndex] = player1.isTurn ? player1.token : player2.token
+      var currentPlayerToken = squareStatus[selectedSquareIndex]
       shouldSwitchTurn = true
       shouldMakeMove = true 
-      var currentPlayerToken = squareStatus[selectedSquareIndex]
-      console.log("squareStatus[selectedSquareIndex]:", squareStatus[selectedSquareIndex])
       updateBoardToken (currentPlayerToken, selectedSquare)
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
       window.alert('Please Select Another Square!')
     }
-    if (shouldMakeMove) {makeMove(selectedSquareIndex)}
+
+    if (shouldMakeMove) {updatePlayerMoves(selectedSquareIndex)}
     var player = player1.isTurn ? player1 : player2
     checkWinConditions(player)
-    checkForDraw(player)
+    checkForDraw(player1, player2)
+   
     if (shouldSwitchTurn) {
         switchPlayersTurn(player1, player2)
         updateHeader(player1.isTurn ? player1.token : player2.token)
     }
 }
 
-function makeMove (selectedSquareIndex) {
+function updatePlayerMoves (selectedSquareIndex) {
     if (player1.isTurn === true) {
       player1.moves.push(selectedSquareIndex)
       console.log("player1.moves:", player1.moves)
@@ -133,11 +134,11 @@ function checkWinConditions(player) {
                 playerSquaresTowardsWinCounter ++
                 console.log("playerSquaresTowardsWinCounter", playerSquaresTowardsWinCounter)
             } 
-        }
+        } 
         if (playerSquaresTowardsWinCounter === 3) {
             console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
             increaseWins(playerSquaresTowardsWinCounter, player)
-            updateHeaderWithWinner(player)
+            // updateHeaderWithWinner(player)
             setTimeout(resetGame, 5000)
             return
         }
@@ -146,13 +147,14 @@ function checkWinConditions(player) {
 
 // A function that detects when a game is a draw (no one has won)
 
-function checkForDraw(player) {
+function checkForDraw(player1, player2) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
-    if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
-        updateHeaderWithDraw()
+    if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0){
         console.log("This Game is a Draw")
+        updateHeaderWithDraw()
         setTimeout(resetGame, 5000)
+        return; 
     }
 }
 // disableCell and remove the click event (wherever it is on event listener)
@@ -189,10 +191,10 @@ function resetGame() {
 function updateBoardToken (currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = currentPlayerToken
 }
-function updateHeaderWithWinner(player) {
-    console.log("line 195:", player)
-    mainHeader.innerText = `${player.token} Won`
-}
+// function updateHeaderWithWinner(player) {
+//     console.log("line 195:", player)
+//     mainHeader.innerText = `${player.token} Won`
+// }
 
 function updateHeaderWithDraw() {
     mainHeader.innerText = `This Game is a Draw!`
