@@ -90,7 +90,7 @@ function updateBoard (selectedSquare, selectedSquareIndex) {
     if (shouldMakeMove) {makeMove(selectedSquareIndex)}
     var player = player1.isTurn ? player1 : player2
     checkWinConditions(player)
-    checkForDraw(player1, player2)
+    checkForDraw(player)
     if (shouldSwitchTurn) {
         switchPlayersTurn(player1, player2)
         updateHeader(player1.isTurn ? player1.token : player2.token)
@@ -138,7 +138,7 @@ function checkWinConditions(player) {
             console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
             increaseWins(playerSquaresTowardsWinCounter, player)
             updateHeaderWithWinner(player)
-            window.setTimeout(resetGame, 15000)
+            setTimeout(resetGame, 5000)
             return
         }
     }
@@ -146,13 +146,13 @@ function checkWinConditions(player) {
 
 // A function that detects when a game is a draw (no one has won)
 
-function checkForDraw(player1, player2) {
+function checkForDraw(player) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
     if (totalPlayerMoves === totalBoardSquares && player1.wins === 0 && player2.wins === 0) {
         updateHeaderWithDraw()
-        window.setTimeout(resetGame, 15000)
         console.log("This Game is a Draw")
+        setTimeout(resetGame, 5000)
     }
 }
 // disableCell and remove the click event (wherever it is on event listener)
@@ -174,7 +174,6 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
 // A function that resets the game board’s data to begin a new game
 
 function resetGame() {
-    // setTimeout(console.log("does this work"), 15000)
     squareStatus = ["", "", "", "", "", "", "", "", ""];
     player1.moves = [];
     player1.isTurn = true;
@@ -186,23 +185,21 @@ function resetGame() {
     }
 }
 
-
 // functions that update the DOM 
 function updateBoardToken (currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = currentPlayerToken
 }
-
-function updateHeader(currentPlayerToken) {
-    mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`
-}
-
 function updateHeaderWithWinner(player) {
+    console.log("line 195:", player)
     mainHeader.innerText = `${player.token} Won`
-    console.log("player:", player)
 }
 
 function updateHeaderWithDraw() {
-    mainHeader.innerHTML = `<h2>This Game is a Draw!</h2>`
+    mainHeader.innerText = `This Game is a Draw!`
+}
+
+function updateHeader(currentPlayerToken) {
+    mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`
 }
 
 function updatePlayerWins(player) {
