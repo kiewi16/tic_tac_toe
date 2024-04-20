@@ -46,8 +46,6 @@ if (token === "🌈") {
 }
 }
 
-// A function that keeps track of the data for the game board
-
 function checkSquareStatus(event) {
     var selectedSquare = event.target.closest('div')
     var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex")) 
@@ -76,8 +74,7 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
     if (result.winConditionMet === false) {
         checkForDraw(player1, player2)
     }
-    // checkForDraw(player1, player2) //this should only run if checkWinConditions is false (aka nobody has won). If someone has won, this function checkForDraw should NOT run.
-
+   
     if (shouldSwitchTurn) {
       switchPlayersTurn(player1, player2)
     }
