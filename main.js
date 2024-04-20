@@ -78,7 +78,6 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
     if (shouldSwitchTurn) {
       switchPlayersTurn(player1, player2)
     }
-
 }
 
 function updatePlayerMoves (selectedSquareIndex) {
@@ -98,8 +97,7 @@ function switchPlayersTurn(player1, player2) {
     player2.isTurn = false 
     player1.isTurn = true 
   }
-  updateHeader(player1.isTurn ? player1.token : player2.token)
-  console.log("players:", player1, player2)
+  updateHeader(player1.isTurn ? player1.token : player2.token)  
 }
 
 function checkWinConditions(player) {
@@ -127,7 +125,7 @@ function checkWinConditions(player) {
 function checkForDraw(player1, player2) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
-    if (totalPlayerMoves === totalBoardSquares){
+    if (totalPlayerMoves === totalBoardSquares) {
         console.log("This Game is a Draw")
         updateHeaderWithDraw()
         setTimeout(resetGame, 1000)
@@ -150,14 +148,12 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
 function resetGame() {
     squareStatus = ["", "", "", "", "", "", "", "", ""];
     player1.moves = [];
-    // player1.isTurn = true;
     player2.moves = [];
-    // player2.isTurn = false; 
-
+   
     for (var i = 0; i < boardSquares.length; i++) {
         boardSquares[i].innerText = ""
     }
-    mainHeader.innerText = `It's 🌈's Turn`
+    mainHeader.innerText = `It's ${currentPlayerToken} Turn`
 }
 
 // functions that update the DOM 
