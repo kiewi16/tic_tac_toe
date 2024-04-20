@@ -26,7 +26,6 @@ for (var i = 0; i < boardSquares.length; i++) {
 window.addEventListener('load', createPlayers)
 
 // functions
-// A function that creates the objects that store each players’ information - properties should include: id (ex: 'one'), token (ex: '⭐️'), wins (ex: 0)
 function createPlayers (token) {
 if (token === "🌈") { 
     return {
@@ -94,9 +93,6 @@ function updatePlayerMoves (selectedSquareIndex) {
     }
 }
 
-// A function that keeps track of which player’s turn it currently is
-// I am updating the player.moves in the makeMove function. The moves need to be updated before the checkWinConditions function is invoked, otherwise the checkWinConditions function will not be evaluating the most recent player.moves to the winConditions array. 
-
 function switchPlayersTurn(player1, player2) {
   if (player1.isTurn === true) {
     player1.isTurn = false
@@ -108,9 +104,6 @@ function switchPlayersTurn(player1, player2) {
   updateHeader(player1.isTurn ? player1.token : player2.token)
   console.log("players:", player1, player2)
 }
-
-// A function that checks the game board data for win conditions
-// This function iterates over the winConditions array and checks if any of the win conditions are met by comparing them against the moves made by each player. If win condition (i.e., all three squares are included in the player1.moves), the function currently logs a message to the console indicating which player wins. 
 
 function checkWinConditions(player) {
     for (var i = 0; i < winConditions.length; i++) {
@@ -134,8 +127,6 @@ function checkWinConditions(player) {
     }
 }
 
-// A function that detects when a game is a draw (no one has won)
-
 function checkForDraw(player1, player2) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
@@ -146,9 +137,6 @@ function checkForDraw(player1, player2) {
         return true; 
     } else {console.log("this game is not a draw")}
 }
-// disableCell and remove the click event (wherever it is on event listener)
-
-// A function called increaseWins - increases the count of a player’s wins (should work for either player)
 
 function increaseWins (playerSquaresTowardsWinCounter, player) {
     if (playerSquaresTowardsWinCounter === 3 && player.id === 1) {
@@ -162,14 +150,12 @@ function increaseWins (playerSquaresTowardsWinCounter, player) {
     }
 }
 
-// A function that resets the game board’s data to begin a new game
-
 function resetGame() {
     squareStatus = ["", "", "", "", "", "", "", "", ""];
     player1.moves = [];
-    player1.isTurn = true;
+    // player1.isTurn = true;
     player2.moves = [];
-    player2.isTurn = false; 
+    // player2.isTurn = false; 
 
     for (var i = 0; i < boardSquares.length; i++) {
         boardSquares[i].innerText = ""
