@@ -73,7 +73,7 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
     
     var player = player1.isTurn ? player1 : player2
     checkWinConditions(player)
-    checkForDraw(player1, player2)
+    // checkForDraw(player1, player2) //this should only run if checkWinConditions is false (aka nobody has won). If someone has won, this function checkForDraw should NOT run.
 
     if (shouldSwitchTurn) {
       switchPlayersTurn(player1, player2)
@@ -122,6 +122,7 @@ function checkWinConditions(player) {
             increaseWins(playerSquaresTowardsWinCounter, player)
             updateHeaderWithWinner(player)
             setTimeout(resetGame, 1000)
+            return true 
         }
     }
     return playerSquaresTowardsWinCounter
@@ -132,7 +133,7 @@ function checkWinConditions(player) {
 function checkForDraw(player1, player2, playerSquaresTowardsWinCounter) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
-    if (totalPlayerMoves === totalBoardSquares && playerSquaresTowardsWinCounter !== 3){
+    if (totalPlayerMoves === totalBoardSquares){
         console.log("This Game is a Draw")
         updateHeaderWithDraw()
         setTimeout(resetGame, 1000)
