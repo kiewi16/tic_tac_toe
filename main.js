@@ -92,7 +92,7 @@ function updatePlayerMoves (selectedSquareIndex) {
 }
 
 function switchPlayersTurn(player1, player2) {
-  if (player1.isTurn === true) {
+  if (player1.isTurn) {
     player1.isTurn = false
     player2.isTurn = true
   } else {
@@ -157,13 +157,20 @@ function resetGame() {
     
     if (player1.isFirstPlayer) {
         player1.isFirstPlayer = false; 
-        player2.isFirstPlayer = true; 
+        player1.isTurn = false; 
+        player2.isFirstPlayer = true;
+        player2.isTurn = true; 
+        currentPlayerToken = `🦄`
         mainHeader.innerText = `🦄 Plays First!`
-    } else if (player2.isFirstPlayer)  {
+    } else {
         player1.isFirstPlayer = false; 
-        player1.isFirstPlayer = true; 
+        player1.isTurn = false; 
+        player1.isFirstPlayer = true;
+        player1.isTurn = true; 
+        currentPlayerToken = `🌈`  
         mainHeader.innerText = `🌈 Plays First!`
     } 
+    return currentPlayerToken
 }
 
 // functions that update the DOM 
