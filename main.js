@@ -49,9 +49,9 @@ if (token === "🌈") {
 }
 
 function checkSquareStatus(event) {
-    var selectedSquare = event.target.closest('div')
-    var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex")) 
-    updateSquare(selectedSquare, selectedSquareIndex)
+    var selectedSquare = event.target.closest('div');
+    var selectedSquareIndex = parseInt(selectedSquare.getAttribute("cellIndex"));
+    updateSquare(selectedSquare, selectedSquareIndex);
 }
     
 function updateSquare(selectedSquare, selectedSquareIndex) {
