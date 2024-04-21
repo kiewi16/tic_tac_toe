@@ -55,37 +55,38 @@ function checkSquareStatus(event) {
 }
     
 function updateSquare(selectedSquare, selectedSquareIndex) {
-    var shouldSwitchTurn = false
-    var shouldMakeMove = false 
+    var shouldSwitchTurn = false;
+    var shouldMakeMove = false;
+
     if (squareStatus[selectedSquareIndex] === "") {
-      squareStatus[selectedSquareIndex] = player1.isTurn ? player1.token : player2.token
-      var currentPlayerToken = squareStatus[selectedSquareIndex]
-      shouldSwitchTurn = true
-      shouldMakeMove = true 
-      updateBoardToken(currentPlayerToken, selectedSquare)
+        squareStatus[selectedSquareIndex] = player1.isTurn ? player1.token : player2.token;
+        var currentPlayerToken = squareStatus[selectedSquareIndex];
+        shouldSwitchTurn = true;
+        shouldMakeMove = true; 
+        updateBoardToken(currentPlayerToken, selectedSquare); 
     } else if (squareStatus[selectedSquareIndex] === "🌈" || squareStatus[selectedSquareIndex] === "🦄") {
-      window.alert('Please Select Another Square!')
+      window.alert('Please Select Another Square!');
     }
 
     if (shouldMakeMove) {
-      updatePlayerMoves(selectedSquareIndex)
+        updatePlayerMoves(selectedSquareIndex);
     }
     
-    var player = player1.isTurn ? player1 : player2
-    var winResult = checkWinConditions(player)
+    var player = player1.isTurn ? player1 : player2;
+    var winResult = checkWinConditions(player);
   
     if (winResult === false) {
-        checkForDraw(player1, player2)
+        checkForDraw(player1, player2);
     } 
 
     if (shouldSwitchTurn && winResult === false) {
-        switchPlayersTurn(player1, player2)
+        switchPlayersTurn(player1, player2);
     } 
 }
 
 function updatePlayerMoves(selectedSquareIndex) {
     if (player1.isTurn) {
-      player1.moves.push(selectedSquareIndex)
+        player1.moves.push(selectedSquareIndex)
     } else {player2.moves.push(selectedSquareIndex)
     }
 }
