@@ -35,7 +35,7 @@ if (token === "🌈") {
         wins: 0, 
         moves: [],
         isFirstPlayer: true, 
-} 
+    } 
 } else {
     return {
         id: 2,
@@ -54,7 +54,7 @@ function checkSquareStatus(event) {
     updateSquare(selectedSquare, selectedSquareIndex)
 }
     
-function updateSquare (selectedSquare, selectedSquareIndex) {
+function updateSquare(selectedSquare, selectedSquareIndex) {
     var shouldSwitchTurn = false
     var shouldMakeMove = false 
     if (squareStatus[selectedSquareIndex] === "") {
@@ -68,7 +68,8 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
     }
 
     if (shouldMakeMove) {
-      updatePlayerMoves(selectedSquareIndex)}
+      updatePlayerMoves(selectedSquareIndex)
+    }
     
     var player = player1.isTurn ? player1 : player2
     var winResult = checkWinConditions(player)
@@ -82,7 +83,7 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
     } 
 }
 
-function updatePlayerMoves (selectedSquareIndex) {
+function updatePlayerMoves(selectedSquareIndex) {
     if (player1.isTurn) {
       player1.moves.push(selectedSquareIndex)
     } else {player2.moves.push(selectedSquareIndex)
@@ -106,7 +107,7 @@ function checkWinConditions(player) {
         for (var j = 0; j < player.moves.length; j++) {
             if (winConditions[i].includes(player.moves[j])) {
                 playerSquaresTowardsWinCounter ++
-                console.log("playerSquaresTowardsWinCounter", playerSquaresTowardsWinCounter)
+                // console.log("playerSquaresTowardsWinCounter", playerSquaresTowardsWinCounter)
             } 
         } 
         if (playerSquaresTowardsWinCounter === 3) {
@@ -124,14 +125,14 @@ function checkForDraw(player1, player2) {
     var totalBoardSquares = 9
     var totalPlayerMoves = player1.moves.length + player2.moves.length 
     if (totalPlayerMoves === totalBoardSquares) {
-        console.log("This Game is a Draw")
+        // console.log("This Game is a Draw")
         updateHeaderWithDraw()
         setTimeout(resetGame, 1000)
         return true
     } else {console.log("this game is not a draw")}
 }
 
-function increaseWins (playerSquaresTowardsWinCounter, player) {
+function increaseWins(playerSquaresTowardsWinCounter, player) {
     if (playerSquaresTowardsWinCounter === 3 && player.id === 1) {
         player1.wins += 1
         console.log("player1.wins:", player1.wins)
@@ -170,7 +171,7 @@ function resetGame() {
 }
 
 // functions that update the DOM 
-function updateBoardToken (currentPlayerToken, selectedSquare) {
+function updateBoardToken(currentPlayerToken, selectedSquare) {
     selectedSquare.innerText = `${currentPlayerToken}`
 }
 
