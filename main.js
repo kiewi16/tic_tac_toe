@@ -174,21 +174,21 @@ function resetGame() {
 
 // functions that update the DOM 
 function updateBoardToken(currentPlayerToken, selectedSquare) {
-    selectedSquare.innerText = `${currentPlayerToken}`
+    selectedSquare.innerText = `${currentPlayerToken}`;
 }
 
 function updateHeader(currentPlayerToken) {
-    mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`
+    mainHeader.innerText = `It's ${currentPlayerToken}'s Turn`;
 }
 
 function updatePlayerWins(player) {
-    var playerWins
+    var playerWins;
     if (player.id === 1) { 
-        playerWins = rainbowWins
+        playerWins = rainbowWins;
     } else {
-        playerWins = unicornWins
+        playerWins = unicornWins;
     }
-    playerWins.innerText = `${player.wins} wins`
+    playerWins.innerText = `${player.wins} wins`;
 }
 
 function updateHeaderWithWinner(player) {
