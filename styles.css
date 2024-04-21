@@ -38,7 +38,7 @@ body {
 }
 
 .square {
-    border: 4px solid black; 
+    border: 3px solid black; 
     cursor: pointer;
     text-align: center;  
 }
