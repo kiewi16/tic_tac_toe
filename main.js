@@ -157,14 +157,14 @@ function resetGame() {
         player1.isTurn = false; 
         player2.isFirstPlayer = true;
         player2.isTurn = true; 
-        currentPlayerToken = `🦄`
+        // currentPlayerToken = `🦄`
         mainHeader.innerText = `🦄 Plays First!`
     } else {
         player1.isFirstPlayer = false; 
         player1.isTurn = false; 
         player1.isFirstPlayer = true;
         player1.isTurn = true; 
-        currentPlayerToken = `🌈`  
+        // currentPlayerToken = `🌈`  
         mainHeader.innerText = `🌈 Plays First!`
     } 
 }
