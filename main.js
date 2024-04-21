@@ -164,10 +164,10 @@ function resetGame() {
         player2.isTurn = true; 
         mainHeader.innerText = `🦄 Plays First!`;
     } else {
-        player1.isFirstPlayer = false; 
-        player1.isTurn = false; 
-        player2.isFirstPlayer = true;
-        player2.isTurn = true; 
+        player1.isFirstPlayer = true; 
+        player1.isTurn = true; 
+        player2.isFirstPlayer = false;
+        player2.isTurn = false; 
         mainHeader.innerText = `🌈 Plays First!`;
     } 
 }
