@@ -4,7 +4,7 @@ body {
     display: flex; 
 }
 
-.rainbow-container {
+.rainbow-token-container, .unicorn-token-container {
     display: flex;
     flex-direction: column; 
     align-items: center; 
@@ -13,7 +13,7 @@ body {
     font-size: 25px; 
 }
 
-.rainbow-emoji {
+.rainbow-emoji, .unicorn-emoji {
     font-size: 50px; 
 }
 
@@ -34,12 +34,10 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     padding: 0px; 
-    /* text-align: center;  */
 }
 
 .square {
     border: 2px solid black; 
-    /* padding: 20px; */
     cursor: pointer;
     text-align: center;  
 }
@@ -59,17 +57,4 @@ body {
 
 .square:nth-child(7), .square:nth-child(8), .square:nth-child(9) {
     border-bottom: none;
-}
-
-.unicorn-container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    height: 100vh; 
-    width: 20%;
-    font-size: 25px; 
-}
-
-.unicorn-emoji {
-    font-size: 50px;
 }
