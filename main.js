@@ -93,13 +93,13 @@ function updatePlayerMoves(selectedSquareIndex) {
 
 function switchPlayersTurn(player1, player2) {
   if (player1.isTurn) {
-    player1.isTurn = false
-    player2.isTurn = true
+    player1.isTurn = false;
+    player2.isTurn = true;
   } else {
-    player2.isTurn = false 
-    player1.isTurn = true 
+    player2.isTurn = false; 
+    player1.isTurn = true; 
   }
-  updateHeader(player1.isTurn ? player1.token : player2.token)  
+  updateHeader(player1.isTurn ? player1.token : player2.token);
 }
 
 function checkWinConditions(player) {
