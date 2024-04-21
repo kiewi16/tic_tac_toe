@@ -192,9 +192,9 @@ function updatePlayerWins(player) {
 }
 
 function updateHeaderWithWinner(player) {
-    mainHeader.innerText = `${player.token} Won`;
+    mainHeader.innerText = `${player.token} Wins`;
     setTimeout(() => {
-        mainHeader.innerText = `${player.token} Won!`;
+        mainHeader.innerText = `${player.token} Wins!`;
     }, 0);
 }
 
