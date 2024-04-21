@@ -107,19 +107,19 @@ function checkWinConditions(player) {
         var playerSquaresTowardsWinCounter = 0;
         for (var j = 0; j < player.moves.length; j++) {
             if (winConditions[i].includes(player.moves[j])) {
-                playerSquaresTowardsWinCounter ++
+                playerSquaresTowardsWinCounter ++;
                 // console.log("playerSquaresTowardsWinCounter", playerSquaresTowardsWinCounter)
             } 
         } 
         if (playerSquaresTowardsWinCounter === 3) {
-            console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
-            increaseWins(playerSquaresTowardsWinCounter, player)
-            updateHeaderWithWinner(player)
-            setTimeout(resetGame, 1000)
-            return true 
+            // console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
+            increaseWins(playerSquaresTowardsWinCounter, player);
+            updateHeaderWithWinner(player);
+            setTimeout(resetGame, 1000); 
+            return true; 
         }
     }
-      return false 
+      return false; 
 }
 
 function checkForDraw(player1, player2) {
