@@ -85,9 +85,7 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
 function updatePlayerMoves (selectedSquareIndex) {
     if (player1.isTurn === true) {
       player1.moves.push(selectedSquareIndex)
-      console.log("player1.moves:", player1.moves)
     } else {player2.moves.push(selectedSquareIndex)
-      console.log("player2.moves:", player2.moves)
     }
 }
 
@@ -170,7 +168,7 @@ function resetGame() {
         currentPlayerToken = `🌈`  
         mainHeader.innerText = `🌈 Plays First!`
     } 
-    return currentPlayerToken
+    // return currentPlayerToken
 }
 
 // functions that update the DOM 
