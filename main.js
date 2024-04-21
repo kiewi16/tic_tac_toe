@@ -26,14 +26,15 @@ for (var i = 0; i < boardSquares.length; i++) {
 window.addEventListener('load', createPlayers)
 
 // functions
-function createPlayers (token) {
+function createPlayers(token) {
 if (token === "🌈") { 
     return {
         id: 1,
         token: token, 
         isTurn: true,
         wins: 0, 
-        moves: []
+        moves: [],
+        isFirstPlayer: true, 
 } 
 } else {
     return {
@@ -41,7 +42,8 @@ if (token === "🌈") {
         token: token, 
         isTurn: false,
         wins: 0, 
-        moves: []
+        moves: [],
+        isFirstPlayer: false, 
     }
 }
 }
@@ -69,15 +71,15 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
       updatePlayerMoves(selectedSquareIndex)}
     
     var player = player1.isTurn ? player1 : player2
-    var result = checkWinConditions(player)
-
-    if (result.winConditionMet === false) {
+    var winResult = checkWinConditions(player)
+  
+    if (winResult === false) {
         checkForDraw(player1, player2)
-    }
-   
-    if (shouldSwitchTurn) {
-      switchPlayersTurn(player1, player2)
-    }
+    } 
+
+    if (shouldSwitchTurn && winResult === false) {
+        switchPlayersTurn(player1, player2)
+    } 
 }
 
 function updatePlayerMoves (selectedSquareIndex) {
@@ -98,6 +100,7 @@ function switchPlayersTurn(player1, player2) {
     player1.isTurn = true 
   }
   updateHeader(player1.isTurn ? player1.token : player2.token)  
+//   console.log("players:", player1, player2)
 }
 
 function checkWinConditions(player) {
@@ -117,9 +120,7 @@ function checkWinConditions(player) {
             return true 
         }
     }
-    return {
-    winConditionMet: false   
-    }
+      return false 
 }
 
 function checkForDraw(player1, player2) {
@@ -129,7 +130,7 @@ function checkForDraw(player1, player2) {
         console.log("This Game is a Draw")
         updateHeaderWithDraw()
         setTimeout(resetGame, 1000)
-        return true; 
+        return true
     } else {console.log("this game is not a draw")}
 }
 
@@ -149,11 +150,20 @@ function resetGame() {
     squareStatus = ["", "", "", "", "", "", "", "", ""];
     player1.moves = [];
     player2.moves = [];
-   
+    
     for (var i = 0; i < boardSquares.length; i++) {
         boardSquares[i].innerText = ""
     }
-    mainHeader.innerText = `It's ${currentPlayerToken} Turn`
+    
+    if (player1.isFirstPlayer) {
+        player1.isFirstPlayer = false; 
+        player2.isFirstPlayer = true; 
+        mainHeader.innerText = `🦄 Plays First!`
+    } else if (player2.isFirstPlayer)  {
+        player1.isFirstPlayer = false; 
+        player1.isFirstPlayer = true; 
+        mainHeader.innerText = `🌈 Plays First!`
+    } 
 }
 
 // functions that update the DOM 
@@ -185,6 +195,6 @@ function updateHeaderWithWinner(player) {
 function updateHeaderWithDraw() {
     mainHeader.innerText = `This Game is a Draw!`;
     setTimeout(() => {
-        mainHeader.innerText = `This Game is a Draw!`;
+    mainHeader.innerText = `This Game is a Draw!`;
     }, 0);
 }
