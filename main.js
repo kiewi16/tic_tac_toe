@@ -135,11 +135,11 @@ function checkForDraw(player1, player2) {
 function increaseWins(playerSquaresTowardsWinCounter, player) {
     if (playerSquaresTowardsWinCounter === 3 && player.id === 1) {
         player1.wins += 1
-        console.log("player1.wins:", player1.wins)
+        // console.log("player1.wins:", player1.wins)
         updatePlayerWins(player1) 
     } else if (playerSquaresTowardsWinCounter === 3 && player.id === 2) {
         player2.wins += 1
-        console.log("player2.wins:", player2.wins)
+        // console.log("player2.wins:", player2.wins)
         updatePlayerWins(player2)
     }
 }
