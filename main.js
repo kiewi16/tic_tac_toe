@@ -98,7 +98,6 @@ function switchPlayersTurn(player1, player2) {
     player1.isTurn = true 
   }
   updateHeader(player1.isTurn ? player1.token : player2.token)  
-//   console.log("players:", player1, player2)
 }
 
 function checkWinConditions(player) {
