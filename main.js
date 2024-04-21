@@ -192,15 +192,15 @@ function updatePlayerWins(player) {
 }
 
 function updateHeaderWithWinner(player) {
-    mainHeader.innerText = `${player.token} Won`
+    mainHeader.innerText = `${player.token} Won`;
     setTimeout(() => {
         mainHeader.innerText = `${player.token} Won!`;
-    }, 0)
+    }, 0);
 }
 
 function updateHeaderWithDraw() {
     mainHeader.innerText = `This Game is a Draw!`;
     setTimeout(() => {
-    mainHeader.innerText = `This Game is a Draw!`;
+        mainHeader.innerText = `This Game is a Draw!`;
     }, 0);
 }
