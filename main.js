@@ -83,7 +83,7 @@ function updateSquare (selectedSquare, selectedSquareIndex) {
 }
 
 function updatePlayerMoves (selectedSquareIndex) {
-    if (player1.isTurn === true) {
+    if (player1.isTurn) {
       player1.moves.push(selectedSquareIndex)
     } else {player2.moves.push(selectedSquareIndex)
     }
