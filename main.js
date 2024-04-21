@@ -107,7 +107,7 @@ function checkWinConditions(player) {
         var playerSquaresTowardsWinCounter = 0;
         for (var j = 0; j < player.moves.length; j++) {
             if (winConditions[i].includes(player.moves[j])) {
-                playerSquaresTowardsWinCounter ++;
+                playerSquaresTowardsWinCounter++;
                 // console.log("playerSquaresTowardsWinCounter", playerSquaresTowardsWinCounter)
             } 
         } 
@@ -154,7 +154,7 @@ function resetGame() {
     player2.moves = [];
     
     for (var i = 0; i < boardSquares.length; i++) {
-        boardSquares[i].innerText = ""
+        boardSquares[i].innerText = "";
     }
     
     if (player1.isFirstPlayer) {
@@ -162,13 +162,13 @@ function resetGame() {
         player1.isTurn = false; 
         player2.isFirstPlayer = true;
         player2.isTurn = true; 
-        mainHeader.innerText = `🦄 Plays First!`
+        mainHeader.innerText = `🦄 Plays First!`;
     } else {
         player1.isFirstPlayer = false; 
         player1.isTurn = false; 
-        player1.isFirstPlayer = true;
-        player1.isTurn = true; 
-        mainHeader.innerText = `🌈 Plays First!`
+        player2.isFirstPlayer = true;
+        player2.isTurn = true; 
+        mainHeader.innerText = `🌈 Plays First!`;
     } 
 }
 
