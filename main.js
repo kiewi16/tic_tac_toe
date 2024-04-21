@@ -167,7 +167,6 @@ function resetGame() {
         currentPlayerToken = `🌈`  
         mainHeader.innerText = `🌈 Plays First!`
     } 
-    // return currentPlayerToken
 }
 
 // functions that update the DOM 
