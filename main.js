@@ -127,7 +127,6 @@ function checkForDraw(player1, player2) {
     var totalPlayerMoves = player1.moves.length + player2.moves.length;
 
     if (totalPlayerMoves === totalBoardSquares) {
-        // console.log("This Game is a Draw")
         updateHeaderWithDraw();
         setTimeout(resetGame, 1000);
         return true;
