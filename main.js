@@ -113,6 +113,7 @@ function checkWinConditions(player) {
         if (playerSquaresTowardsWinCounter === 3) {
             increaseWins(playerSquaresTowardsWinCounter, player);
             updateHeaderWithWinner(player);
+            disableClicks(); 
             setTimeout(resetGame, 1000); 
             return true; 
         }
@@ -126,6 +127,7 @@ function checkForDraw(player1, player2) {
 
     if (totalPlayerMoves === totalBoardSquares) {
         updateHeaderWithDraw();
+        disableClicks(); 
         setTimeout(resetGame, 1000);
         return true;
     } else {
@@ -140,6 +142,12 @@ function increaseWins(playerSquaresTowardsWinCounter, player) {
     } else if (playerSquaresTowardsWinCounter === 3 && player.id === 2) {
         player2.wins += 1;
         updatePlayerWins(player2); 
+    }
+}
+
+function disableClicks() {
+    for(var i = 0; i < boardSquares.length; i++) {
+        boardSquares[i].removeEventListener('click', checkSquareStatus);
     }
 }
 
@@ -164,7 +172,11 @@ function resetGame() {
         player2.isFirstPlayer = false;
         player2.isTurn = false; 
         mainHeader.innerText = `🌈 Plays First!`;
-    } 
+    }
+    
+    for (var i = 0; i < boardSquares.length; i++) {
+        boardSquares[i].addEventListener('click', checkSquareStatus)
+    }
 }
 
 // functions that update the DOM 
