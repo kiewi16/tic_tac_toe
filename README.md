@@ -18,7 +18,7 @@ I am in Module 1 at Turing School of Software & Design. This project took 30 hou
 
 ## Wins + Challenges:
 *Wins*:
-- Implementation of game logic.
+- Succesful implementation of game logic.
 - Separation of the data model and how the data is displayed on the DOM. 
 
 *Challenges*
