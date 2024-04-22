@@ -23,7 +23,7 @@ I am in Module 1 at Turing School of Software & Design. This project took 30 hou
 
 *Challenges*
 - Unsuccesful at refactoring code to remove one nested for loop. 
-- It was difficult to write functions that are DRY and adhere to the Single Responsibility Principle (SRP). 
+- It was a challange to write functions that are DRY and adhere to the Single Responsibility Principle (SRP). 
 
 ## Installation Instructions:
 1. Fork repository to your GitHub account.
