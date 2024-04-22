@@ -34,5 +34,6 @@ I am in Module 1 at Turing School of Software & Design. This project took 30 hou
 6. Enjoy playing tic-tac-toe!
 
 ## Preview of App:
+![Screenshot 2024-04-22 at 3 56 03 PM](https://github.com/kiewi16/tic_tac_toe/assets/150177522/4fe0824f-68e0-4ac8-87ef-bb86063bf1d3)
 
 
