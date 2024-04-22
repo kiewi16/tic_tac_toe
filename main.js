@@ -108,11 +108,9 @@ function checkWinConditions(player) {
         for (var j = 0; j < player.moves.length; j++) {
             if (winConditions[i].includes(player.moves[j])) {
                 playerSquaresTowardsWinCounter++;
-                // console.log("playerSquaresTowardsWinCounter", playerSquaresTowardsWinCounter)
             } 
         } 
         if (playerSquaresTowardsWinCounter === 3) {
-            // console.log(player.id === 1 ? "Player 1 Wins!" : "Player 2 Wins!")
             increaseWins(playerSquaresTowardsWinCounter, player);
             updateHeaderWithWinner(player);
             setTimeout(resetGame, 1000); 
