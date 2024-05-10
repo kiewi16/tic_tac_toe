@@ -27,7 +27,7 @@ I am in Module 1 at Turing School of Software & Design. This project took 30 hou
 
 ## Installation Instructions:
 1. Fork repository to your GitHub account.
-2. Use your terminal to clone the repository down to your local machine.
+2. Use terminal to clone the repository down to your local machine.
 3. Use terminal to cd into the appropriate folder.
 4. Use terminal to open the project in your text editor.
 5. Run open index.html in your terminal to open the application. 
