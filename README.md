@@ -24,12 +24,11 @@ HTML, CSS, and JavaScript were used to build a tic-tac-toe game application duri
 ## Installation Instructions:
 1. Fork repository to your GitHub account.
 2. Use terminal to clone the repository down to your local machine.
-3. Use terminal to cd into the appropriate folder.
-4. Use terminal to open the project in your text editor.
-5. Run `open index.html` in your terminal to open the application. 
-6. Enjoy playing tic-tac-toe!
+3. 'cd' into directory 
+4. Run `open index.html` in your terminal to open the application. 
+5. Enjoy playing tic-tac-toe!
 
 ## Preview of App:
-![Screenshot 2024-04-22 at 3 56 03 PM](https://github.com/kiewi16/tic_tac_toe/assets/150177522/4fe0824f-68e0-4ac8-87ef-bb86063bf1d3)
+![tic-tac-toe](https://github.com/user-attachments/assets/ea2f47ab-c963-4360-a13f-d272878afd07)
 
 
